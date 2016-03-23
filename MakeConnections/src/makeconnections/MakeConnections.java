@@ -29,14 +29,14 @@ public class MakeConnections {
         //create the canvas
         Canvas canv1 = new Canvas();
         canv1.setSize(800,800);
-        canv1.setBackground(Color.red);
+        canv1.setBackground(Color.white);
         
         Frame frame1 = new Frame();
         frame1.add(canv1);
         frame1.setLayout(new FlowLayout());
         frame1.setSize(800,800);
+        frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
-        
         //set the mouse to the game board
         //requestFocus();
     }
