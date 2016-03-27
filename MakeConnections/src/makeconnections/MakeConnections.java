@@ -6,12 +6,13 @@
 package makeconnections;
 import java.awt.*;
 import javax.swing.JComponent;
+import javax.swing.*;
 
 /**
  *
  * @author Patrick
  */
-public class MakeConnections {
+public class MakeConnections extends JPanel{
 
     /**
      * @param args the command line arguments
@@ -22,6 +23,8 @@ public class MakeConnections {
     public static void main(String[] args) {
         //initiate the frame and draw the game board
         
+        
+        
         drawBoard();
     }
     
@@ -29,7 +32,7 @@ public class MakeConnections {
         //create the canvas
         Canvas canv1 = new Canvas();
         canv1.setSize(800,800);
-        canv1.setBackground(Color.white);
+        canv1.setBackground(Color.BLUE);
         
         Frame frame1 = new Frame();
         frame1.add(canv1);
@@ -39,9 +42,16 @@ public class MakeConnections {
         frame1.setVisible(true);
         //set the mouse to the game board
         //requestFocus();
+        
+    }
+    private boolean updateBoard() {
+        repaint();
+        return true;
     }
     
     public void paint(Graphics g){
+        g.setColor(Color.WHITE);
+        g.drawOval(5, 5, 10, 10);
         
     }
     
