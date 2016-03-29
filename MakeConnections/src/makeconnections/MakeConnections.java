@@ -26,12 +26,10 @@ public class MakeConnections extends JPanel{
     
     //create the connect 4 game board with 7 columns and 6 rows
     public static int[][] board = new int[6][7]; 
+    public static boolean running = true;
     
     public static void main(String[] args) {
         //initiate the frame and draw the game board
-        
-
-        boolean running = true;
         
         drawBoard();
         System.out.println("Welcome to MakeConnections!");
@@ -91,11 +89,42 @@ public class MakeConnections extends JPanel{
             if(board[r][column] == 0){
                 board[r][column] = player;
                 r = 0;
+                checkBoard();
             }
         }
         
         printBoard();
     
+    }
+    
+    public static void checkBoard(){
+        //check vertical chips
+        for(int a = 0; a < 6; a++){
+            for(int b = 5; b >= 0; b--){
+                if(!(board[a][b] == 0)){
+                    checkVertical(a, b, 0);
+                }
+            }
+        }
+    }
+    
+    public static void checkVertical(int a, int b, int count){
+        if(a < 6 && count < 4){
+            if(!(board[a][b] == 0)){
+                count++;
+                
+                if(count == 4){
+                    printBoard();
+                    System.out.println("Connection made! Player " + board[a][b] + " wins!");
+                    running = false;
+                } else {
+                    a++;
+                    checkVertical(a, b, count); 
+                }
+            }
+        } else if(a == 6){
+            System.out.println("No connection made");
+        }
     }
     
     private boolean updateBoard() {
