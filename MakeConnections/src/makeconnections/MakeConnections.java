@@ -86,7 +86,7 @@ public class MakeConnections extends JPanel{
             if(board[r][column] == 0){
                 board[r][column] = (player1) ? 1 : 2;
                 r = 0;
-                checkBoard();
+                checkBoard(player1);
             }
         }
         
@@ -94,20 +94,22 @@ public class MakeConnections extends JPanel{
     
     }
     
-    public static void checkBoard(){
+    public static void checkBoard(boolean player1){
+        int player = player1 ? 1 : 2;
+        
         //check vertical chips
         for(int a = 0; a < 6; a++){
             for(int b = 5; b > 2; b--){
                 if(!(board[a][b] == 0)){
-                    checkVertical(a, b, 0);
+                    checkVertical(a, b, 0, player);
                 }
             }
         }
     }
     
-    public static void checkVertical(int a, int b, int count){
+    public static void checkVertical(int a, int b, int count, int player){
         if(a < 6 && count < 4){
-            if(!(board[a][b] == 0)){
+            if(board[a][b] == player){
                 count++;
                 
                 if(count == 4){
@@ -116,7 +118,7 @@ public class MakeConnections extends JPanel{
                     running = false;
                 } else {
                     a++;
-                    checkVertical(a, b, count); 
+                    checkVertical(a, b, count, player); 
                 }
             }
         } else if(a == 6){
