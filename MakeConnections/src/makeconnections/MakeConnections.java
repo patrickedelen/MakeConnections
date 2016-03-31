@@ -85,15 +85,55 @@ public class MakeConnections extends JPanel{
         for(int r = 5; r >= 0; r--){
             if(board[r][column] == 0){
                 board[r][column] = (player1) ? 1 : 2;
+                checkChip(r, column);
                 r = 0;
-                checkBoard(player1);
             }
         }
         
+        //checkBoard(player1);
         if(running) {printBoard();}
     
     }
     
+    //checks each chip as it is placed to improve search time
+    public static void checkChip(int a, int b){
+        int player = board[a][b];
+        //first should check a 3*3 location of the chip, if there are any chips of the same type in that area,
+        //search in that direction
+        
+        //checking vertical chip
+        //if(board[a + 1])
+        
+        System.out.println("Checking vertical");
+        if(board[a][b] == player){
+            int count = recCheckChip(a, b, 1, player);
+            System.out.println("Count: " + count);
+            if(count == 4){
+                System.out.println("Player " + board[a][b] + " Wins!");
+                running = false;
+            }
+        }
+        
+    }
+    
+    public static int recCheckChip(int a, int b, int direction, int player) {
+        //recieves the position of the checking chip, then searches in that direction
+        //Directions: 0 1 2
+        //            3 _ 4
+        //            5 6 7
+        //actually only need to check below chip for vertical
+        System.out.println("A:" + a + " B:" + b);
+        if(a >= 0 && a < 6 && b >= 0 && b < 7){
+            if(board[a][b] == player){
+                switch (direction){
+                    case 0: return 1 + recCheckChip(a - 1, b - 1, direction, player);
+                    case 1: return 1 + recCheckChip(a + 1, b, direction, player); //checking down
+                }
+            }
+        }
+            return 0;
+    }
+    //Could be improved by only checking the chip that is dropped instead of the entire board
     public static void checkBoard(boolean player1){
         int player = player1 ? 1 : 2;
         //System.out.println("player: " + player);
