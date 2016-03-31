@@ -39,18 +39,15 @@ public class MakeConnections extends JPanel{
         //print the game board
         printBoard();
         
+        boolean player1 = true;
+        
         while(running){
             //get player1 choice
             int column = scan.nextInt();
             scan.nextLine();
-            dropChip(1, column);
+            dropChip(player1, column);
             
-            //get player2 choice
-            column = scan.nextInt();
-            scan.nextLine();
-            dropChip(2, column);
-            
-            //loop
+            player1 = !player1;
         }
         
     }
@@ -83,24 +80,24 @@ public class MakeConnections extends JPanel{
         }
     }
     
-    public static void dropChip(int player, int column){
+    public static void dropChip(boolean player1, int column){
         
         for(int r = 5; r >= 0; r--){
             if(board[r][column] == 0){
-                board[r][column] = player;
+                board[r][column] = (player1) ? 1 : 2;
                 r = 0;
                 checkBoard();
             }
         }
         
-        printBoard();
+        if(running) {printBoard();}
     
     }
     
     public static void checkBoard(){
         //check vertical chips
         for(int a = 0; a < 6; a++){
-            for(int b = 5; b >= 0; b--){
+            for(int b = 5; b > 2; b--){
                 if(!(board[a][b] == 0)){
                     checkVertical(a, b, 0);
                 }
@@ -123,7 +120,7 @@ public class MakeConnections extends JPanel{
                 }
             }
         } else if(a == 6){
-            System.out.println("No connection made");
+            System.out.println("No connection made " + b);
         }
     }
     
