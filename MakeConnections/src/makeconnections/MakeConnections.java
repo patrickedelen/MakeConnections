@@ -22,6 +22,7 @@ public class MakeConnections extends JPanel{
      */
     
     public FindConnections fc = new FindConnections();
+    public CheckConnections cc = new CheckConnections();
     public static Scanner scan = new Scanner(System.in);
     
     //create the connect 4 game board with 7 columns and 6 rows
@@ -46,6 +47,12 @@ public class MakeConnections extends JPanel{
             int column = scan.nextInt();
             scan.nextLine();
             dropChip(player1, column);
+            
+            //end the game if a player wins
+            if(!running){
+                System.out.println("Player " + (player1 ? 1 : 2) + " wins!");
+                
+            }
             
             player1 = !player1;
         }
