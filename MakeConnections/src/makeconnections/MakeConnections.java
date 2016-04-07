@@ -21,8 +21,8 @@ public class MakeConnections extends JPanel{
      * @param args the command line arguments
      */
     
-    public FindConnections fc = new FindConnections();
-    public CheckConnections cc = new CheckConnections();
+    public static FindConnections fc = new FindConnections();
+    public static CheckConnections cc = new CheckConnections();
     public static Scanner scan = new Scanner(System.in);
     
     //create the connect 4 game board with 7 columns and 6 rows
@@ -50,6 +50,7 @@ public class MakeConnections extends JPanel{
             
             //end the game if a player wins
             if(!running){
+                printBoard();
                 System.out.println("Player " + (player1 ? 1 : 2) + " wins!");
                 
             }
@@ -92,7 +93,7 @@ public class MakeConnections extends JPanel{
         for(int r = 5; r >= 0; r--){
             if(board[r][column] == 0){
                 board[r][column] = (player1) ? 1 : 2;
-                checkChip(r, column);
+                cc.checkChip(r, column);
                 r = 0;
             }
         }
@@ -125,7 +126,7 @@ public class MakeConnections extends JPanel{
     
     public static int recCheckChip(int a, int b, int direction, int player) {
         //recieves the position of the checking chip, then searches in that direction
-        //Directions: 0 1 2
+        //Directions: 0 - 2
         //            3 _ 4
         //            5 6 7
         //actually only need to check below chip for vertical
