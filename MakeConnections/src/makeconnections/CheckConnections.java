@@ -15,6 +15,7 @@ public class CheckConnections {
     
      //checks each chip as it is placed to improve search time
     public static void checkChip(int a, int b){
+        System.out.println("Passed location "+a+" "+b + " value: " + mc.board[a][b]);
         int player = mc.board[a][b];
         //first should check a 3*3 location of the chip, if there are any chips of the same type in that area,
         //search in that direction
@@ -30,12 +31,78 @@ public class CheckConnections {
                 mc.running = false;
             }
         }
-        int ncount = recCheckChipRight(a - 3, b - 3, 1, 0, 0);
+        /*int ncount = recCheckChipDiag(a - 3, b - 3, true, mc.board[a][b], 0, 0);
         System.out.println("Ncount: " + ncount);
         if(ncount == 4){
             mc.running = false;
-        }
+        }*/
         
+        //diagonal right
+        int drCount = 0;
+        int mA = a - 3;
+        int mB = b - 3;
+        for(int i = 0; i < 8; i ++){
+            //System.out.println("Possible location " + mA + " " + mB);
+            if(mA >= 0 && mB >= 0 && mA < 6 && mB < 7){
+                //System.out.println("Checking location " + mA + " " + mB);
+                if(mc.board[mA][mB] == player){
+                    drCount++;
+                    if(drCount == 4){
+                        playerWin(player);
+                        break;
+                    }
+                    //System.out.println("Found match at " + mA + " " + mB);
+                } else if(mc.board[mA][mB] != 0) {
+                    drCount = 0;
+                }
+            }
+            mA++;
+            mB++;
+        }
+        System.out.println("Diag Right Count: " + drCount);
+        
+        //diagonal left
+        int dlCount = 0;
+        int lA = a - 3;
+        int lB = b + 3;
+        for(int i = 0; i < 8; i ++){
+            //System.out.println("Possible location " + mA + " " + mB);
+            if(lA >= 0 && lB >= 0 && lA < 6 && lB < 7){
+                //System.out.println("Checking location " + mA + " " + mB);
+                if(mc.board[lA][lB] == player){
+                    dlCount++;
+                    if(dlCount == 4){
+                        playerWin(player);
+                        break;
+                    }
+                    //System.out.println("Found match at " + mA + " " + mB);
+                } else if(mc.board[lA][lB] != 0) {
+                    dlCount = 0;
+                }
+            }
+            lA++;
+            lB--;
+        }
+        System.out.println("Diag Left Count: " + dlCount);
+        
+        //horizontal count
+        int hCount = 0;
+        int hB = b - 3;
+        for(int i = 0; i < 8; i ++){
+            if(hB >= 0 && hB < 7){
+                if(mc.board[a][hB] == player){
+                    hCount++;
+                    if(hCount == 4){
+                        playerWin(player);
+                        break;
+                    }
+                } else if(mc.board[a][hB] != player){
+                    hCount = 0;
+                }
+            }
+            hB++;
+        }
+        System.out.println("HorzCount " + hCount);
     }
     
     public static int recCheckChip(int a, int b, int direction, int player) {
@@ -55,7 +122,7 @@ public class CheckConnections {
             if(mc.board[a][b] == player){
                 switch (direction){
                     case 0: return 1 + recCheckChip(a - 1, b - 1, direction, player);
-                    case 1: return 1 + recCheckChip(a + 1, b, direction, player); //checking down
+                    case 1: return 1 + recCheckChip(a - 1, b, direction, player); //checking down
                 }
             }
         }
@@ -136,6 +203,12 @@ public class CheckConnections {
     //ensures horizontal board position has not reached four chips in a row
     private boolean checkHorizontal(){
         return false;
+    }
+    
+    private static void playerWin(int player){
+        mc.printBoard();
+        System.out.println("Player " + player + " Wins!");
+        mc.running = false;
     }
     
     

@@ -80,7 +80,7 @@ public class MakeConnections extends JPanel{
     public static void printBoard(){
         System.out.println("0 1 2 3 4 5 6");
         System.out.println("-------------");
-        for(int a = 0; a < 6; a++){
+        for(int a = 5; a >= 0; a--){
             for(int b = 0; b < 7; b++){
                 System.out.print(board[a][b] + " ");
             }
@@ -90,11 +90,12 @@ public class MakeConnections extends JPanel{
     
     public static void dropChip(boolean player1, int column){
         //Checking the height of the board and setting the first empty spot in the collumn to the player's number
-        for(int r = 5; r >= 0; r--){
+        for(int r = 0; r < 6; r++){
             if(board[r][column] == 0){
                 board[r][column] = (player1) ? 1 : 2;
+                System.out.println(board[r][column]);
                 cc.checkChip(r, column);
-                r = 0;
+                r = 6;
             }
         }
         
