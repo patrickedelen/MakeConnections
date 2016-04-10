@@ -148,6 +148,8 @@ public class CheckConnections {
         return checks;
     }
     
+    //Checks the diagonal chips to the left and right
+    //and is recurslve
     public static int recCheckChipDiag(int a, int b, boolean isRight, int player, int count, int checks) {
        
         if(count == 4 || checks > 8) {
@@ -205,6 +207,7 @@ public class CheckConnections {
         return false;
     }
     
+    //simple method to print out which player won and the final game board
     private static void playerWin(int player){
         mc.printBoard();
         System.out.println("Player " + player + " Wins!");

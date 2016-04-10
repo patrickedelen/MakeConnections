@@ -142,32 +142,35 @@ public class MakeConnections extends JPanel{
         }
             return 0;
     }
-    //Could be improved by only checking the chip that is dropped instead of the entire board
-    public static void checkBoard(boolean player1){
-        int player = player1 ? 1 : 2;
-        //System.out.println("player: " + player);
-        
-        //check vertical chips starting with a (vertical) 0
-        for(int a = 5; a > 2; a--){
-            for(int b = 0; b < 7; b++){
-                if(board[a][b] == player){
-                    System.out.println("checking vertical board position: " + a + " " + b);
-                    checkVertical(a, b, 0, player);
-                }
-            }
-        }
-        
-        //check horizontal chips starting with a (vertical) 0
-        for(int a = 5; a >= 0; a--){
-            for(int b = 0; b < 4; b++){
-                if(board[a][b] == player){
-                    System.out.println("checking horizontal board position: " + a + " " + b);
-                    checkHorizontal(a, b, 0, player);
-                }
-            }
-        }
-    }
     
+    //commented out as code is unused
+//
+//    //Could be improved by only checking the chip that is dropped instead of the entire board
+//    public static void checkBoard(boolean player1){
+//        int player = player1 ? 1 : 2;
+//        //System.out.println("player: " + player);
+//        
+//        //check vertical chips starting with a (vertical) 0
+//        for(int a = 5; a > 2; a--){
+//            for(int b = 0; b < 7; b++){
+//                if(board[a][b] == player){
+//                    System.out.println("checking vertical board position: " + a + " " + b);
+//                    checkVertical(a, b, 0, player);
+//                }
+//            }
+//        }
+//        
+//        //check horizontal chips starting with a (vertical) 0
+//        for(int a = 5; a >= 0; a--){
+//            for(int b = 0; b < 4; b++){
+//                if(board[a][b] == player){
+//                    System.out.println("checking horizontal board position: " + a + " " + b);
+//                    checkHorizontal(a, b, 0, player);
+//                }
+//            }
+//        }
+//    }
+//    
     public static void checkVertical(int a, int b, int count, int player){
         if(a >= 0){
             if(board[a][b] == player){
