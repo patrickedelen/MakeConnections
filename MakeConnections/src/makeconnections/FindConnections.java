@@ -12,5 +12,10 @@ package makeconnections;
 
 //This class will find the value of each move on the game board
 public class FindConnections {
-    
+    public static void evaluate(int[][] board){
+        //will search through each chip and find all values
+        for(int i = 0; i < 7; i ++){
+            
+        }
+    }
 }
