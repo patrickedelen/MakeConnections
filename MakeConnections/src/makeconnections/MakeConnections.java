@@ -60,6 +60,7 @@ public class MakeConnections extends JPanel{
         
     }
     
+    //This method should draw the game board
     public static void drawBoard(){
         //create the canvas
         Canvas canv1 = new Canvas();

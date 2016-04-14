@@ -85,6 +85,9 @@ public class CheckConnections {
         }
         System.out.println("Diag Left Count: " + dlCount);
         
+        
+        
+        
         //horizontal count
         int hCount = 0;
         int hB = b - 3;
