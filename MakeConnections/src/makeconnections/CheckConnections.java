@@ -199,21 +199,11 @@ public class CheckConnections {
         return count;
     }
     
-    //ensures vertical board position has not reached four chips in a row
-    private boolean checkVertical(){
-        
-        return false;
-    }
-    
-    //ensures horizontal board position has not reached four chips in a row
-    private boolean checkHorizontal(){
-        return false;
-    }
-    
     //simple method to print out which player won and the final game board
     private static void playerWin(int player){
         mc.printBoard();
         System.out.println("Player " + player + " Wins!");
+        System.out.println("Yay1");
         mc.running = false;
     }
     
